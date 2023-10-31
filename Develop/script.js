@@ -2,12 +2,40 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 // this pulls from the jQuery site
+$(document).ready(function(){
+  $('.saveBtn').on("click", function(){
+    var value = $(this).siblings('.description').val()
+    var id = $(this).parent().attr('id') 
+
+
+    localStorage.setItem(id, value)
+  });
+
+$('#hour-9 .description').val(localStorage.getItem('hour-9'))
+});
+$('#hour-10 .description').val(localStorage.getItem('hour-10'));
+$('#hour-11 .description').val(localStorage.getItem('hour-11'));
+$('#hour-12 .description').val(localStorage.getItem('hour-12'));
+$('#hour-1 .description').val(localStorage.getItem('hour-1'));
+$('#hour-2 .description').val(localStorage.getItem('hour-2'));
+$('#hour-3 .description').val(localStorage.getItem('hour-3'));
+$('#hour-4 .description').val(localStorage.getItem('hour-4'));
+$('#hour-5 .description').val(localStorage.getItem('hour-5'));
+
+function currentTime(){
+  const currentTime = dayjs();
+  const formattedTime = currentTime.format("YYYY-MM-DD HH:mm:ss");
+  $('#current-time').text(formattedTime);
+  }
+
+  currentTime();
+
+  setInterval(CurrentTime, 1000);
+
 const localeSettings = {};
 dayjs.locale(localeSettings);
 
-$(function)(){
-  
-}
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. 
@@ -16,7 +44,6 @@ $(function)(){
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  addEventListener("click");
   //
   //
   // TODO: Add code to apply the past, present, or future class to each time
@@ -43,4 +70,4 @@ $(function)(){
   //
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+
